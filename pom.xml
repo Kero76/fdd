@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.rouen.univ.datamining</groupId>
+    <artifactId>fr.rouen.univ.datamining</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- Developers information -->
+    <developers>
+        <developer>
+            <name>Nicolas GILLE</name>
+            <email>nic.gille@gmail.com</email>
+            <url>http://nicolas-gille.fr</url>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+        <xqj-api.version>1.0</xqj-api.version>
+        <saxon-he.version>9.7.0-1</saxon-he.version>
+        <saxon-xqj.version>8.9</saxon-xqj.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <!-- Dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>javax.xml.xquery</groupId>
+            <artifactId>xqj-api</artifactId>
+            <version>${xqj-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>${saxon-he.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.sf.saxon/saxon-xqj -->
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>saxon-xqj</artifactId>
+            <version>${saxon-xqj.version}</version>
+        </dependency>
+
+        <!-- Tests API -->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
