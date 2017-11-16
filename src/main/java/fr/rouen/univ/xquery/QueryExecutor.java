@@ -1,23 +1,66 @@
 package fr.rouen.univ.xquery;
 
-import net.sf.saxon.s9api.*;
+import com.saxonica.xqj.SaxonXQDataSource;
+
+import javax.xml.xquery.XQConnection;
+import javax.xml.xquery.XQException;
+import javax.xml.xquery.XQPreparedExpression;
+import javax.xml.xquery.XQSequence;
+import java.io.*;
+import java.util.logging.Logger;
 
 public class QueryExecutor {
 
-    public XdmValue query(String request)
-            throws SaxonApiException {
-        Processor processor = new Processor(false);
-        XQueryCompiler qc = processor.newXQueryCompiler();
-        XQueryExecutable exp1 = qc.compile(
-                "declare function local:t1($v1 as xs:integer, $v2 as xs:double*) { " +
-                        "   $v1 div sum($v2)" +
-                        "};" +
-                        "10");
-        final XQueryEvaluator ev = exp1.load();
-        XdmValue v1 = new XdmAtomicValue(14);
-        XdmValue v2 = new XdmAtomicValue(5).append(new XdmAtomicValue(2));
-        XdmValue result = ev.callFunction(new QName("http://www.w3.org/2005/xquery-local-functions", "t1"), new XdmValue[]{v1, v2});
+    private static Logger logger = Logger.getLogger("QueryExecutor");
 
-        return result;
+    /**
+     * Parse a .xml file and write on a file the result of the request.
+     * @param path
+     *  Path to .xml file at parse.
+     * @param filename
+     *  Name of the xml file at parse.
+     * @param extension
+     *  Extension of the file at parse.
+     * @throws XQException
+     * @throws IOException
+     */
+    public void queryInFile(String path, String filename, String extension)
+            throws XQException, IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(path);
+        stringBuilder.append(filename);
+        stringBuilder.append(extension);
+
+        logger.info("Prepare and execute query");
+        SaxonXQDataSource ds = new SaxonXQDataSource();
+        XQConnection con = ds.getConnection();
+        String query = "let $fdd := doc(\"" + stringBuilder.toString() + "\")/PubmedArticleSet/PubmedArticle\n" +
+                "for $article in $fdd\n" +
+                "return ('\nT. ',$article//ArticleTitle/text())";
+        XQPreparedExpression expr = con.prepareExpression(query);
+        XQSequence result = expr.executeQuery();
+
+        logger.info("Try to write result of query on file");
+        Writer writer = null;
+        try {
+            writer = new BufferedWriter(
+                new OutputStreamWriter(
+                    new FileOutputStream(
+                        "src/resources/files/" + filename + ".txt"
+                    )
+                )
+            );
+            logger.info("Writer write content on file");
+            writer.write(result.getSequenceAsString(null));
+        } catch (Exception e) {
+            logger.info("Error while writing in file" + filename + " : " + e.getMessage());
+        } finally {
+            logger.info("The object Writer is close.");
+            writer.close();
+        }
+
+        result.close();
+        expr.close();
+        con.close();
     }
 }

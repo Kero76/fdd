@@ -21,35 +21,13 @@
     </developers>
 
     <properties>
-        <xqj-api.version>1.0</xqj-api.version>
-        <saxon-he.version>9.7.0-1</saxon-he.version>
-        <saxon-xqj.version>8.9</saxon-xqj.version>
+        <log4j.version>1.2.17</log4j.version>
         <junit.version>4.12</junit.version>
     </properties>
 
     <!-- Dependencies -->
     <dependencies>
-        <dependency>
-            <groupId>javax.xml.xquery</groupId>
-            <artifactId>xqj-api</artifactId>
-            <version>${xqj-api.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.sf.saxon</groupId>
-            <artifactId>Saxon-HE</artifactId>
-            <version>${saxon-he.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/net.sf.saxon/saxon-xqj -->
-        <dependency>
-            <groupId>net.sf.saxon</groupId>
-            <artifactId>saxon-xqj</artifactId>
-            <version>${saxon-xqj.version}</version>
-        </dependency>
-
         <!-- Tests API -->
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
