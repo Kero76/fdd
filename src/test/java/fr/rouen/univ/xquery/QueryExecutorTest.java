@@ -5,6 +5,10 @@ import org.junit.Test;
 
 import javax.xml.xquery.XQException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class QueryExecutorTest {
 
@@ -37,4 +41,50 @@ public class QueryExecutorTest {
 //            e.printStackTrace();
 //        }
 //    }
+
+
+    @Test
+    public void testGetTitles() {
+        // Given -
+        final String path = "src/resources/";
+        final String filename = "rare_diseases_short_ver";
+        final String extension = ".xml";
+        Map<String, String> map;
+
+        Map<String, String> mapExpected = new HashMap<>();
+        mapExpected.put("29061857", "A case of blood sweating: hematohidrosis syndrome");
+        mapExpected.put("29054232", "Surgical Repair of Bland-White-Garland Syndrome With Giant Right Coronary Artery Aneurysm");
+        mapExpected.put("29054237", "Systemic Venous Rerouting Through the Coronary Sinus for ccTGA With Bilateral SVCs");
+
+        // When - Execute getTitles
+        map = this.queryExecutor.getTitles(path, filename, extension);
+
+        // Then - Compare with Map expected.
+        for (String key : map.keySet()) {
+            assertThat(mapExpected.containsKey(key)).isTrue();
+            assertThat(mapExpected.get(key)).isEqualTo(map.get(key));
+        }
+    }
+
+    @Test
+    public void testGetAbstract() {
+        // Given -
+        final String path = "src/resources/";
+        final String filename = "rare_diseases_short_ver";
+        final String extension = ".xml";
+        Map<String, String> map;
+
+        Map<String, String> mapExpected = new HashMap<>();
+        mapExpected.put("29054232", "A 61-year-old man was diagnosed with adult-type anomalous left coronary artery from pulmonary artery (or Bland-White-Garland syndrome) and a giant right coronary artery aneurysm");
+
+        // When - Execute getTitles
+        map = this.queryExecutor.getAbstracts(path, filename, extension);
+        System.out.println("Map : " + map);
+
+        // Then - Compare with Map expected.
+        for (String key : map.keySet()) {
+            assertThat(mapExpected.containsKey(key)).isTrue();
+            assertThat(mapExpected.get(key)).isEqualTo(map.get(key));
+        }
+    }
 }

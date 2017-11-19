@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="FDD">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/resources/libs/saxon9-test.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/resources/libs/saxon9-xqj.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/resources/libs/saxon9he.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/resources/libs/xqj-api-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
