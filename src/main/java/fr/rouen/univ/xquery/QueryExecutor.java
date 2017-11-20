@@ -1,6 +1,7 @@
 package fr.rouen.univ.xquery;
 
 import com.saxonica.xqj.SaxonXQDataSource;
+import fr.rouen.univ.models.FileContent;
 
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -78,6 +79,25 @@ public class QueryExecutor {
     //    }
 
     /**
+     * Merge Two map.
+     *
+     * @param titles
+     *  Map who contains all titles.
+     * @param abstracts
+     *  Map who contains all abstracts.
+     * @return
+     *  A map who contain the merge of two maps.
+     */
+    public Map<String, FileContent> mergeMap(Map<String, String> titles, Map<String, String> abstracts) {
+        Map<String, FileContent> map = new HashMap<>();
+        for (String s : abstracts.keySet()) {
+            map.put(s, new FileContent(s, titles.get(s), abstracts.get(s)));
+        }
+
+        return map;
+    }
+
+    /**
      * Get all Titles present on file.
      *
      * @param path Path of the file at load.
@@ -152,7 +172,6 @@ public class QueryExecutor {
 
         return abstracts;
     }
-
 
     /**
      * Build query.

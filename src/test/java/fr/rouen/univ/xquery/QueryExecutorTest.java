@@ -1,5 +1,6 @@
 package fr.rouen.univ.xquery;
 
+import fr.rouen.univ.models.FileContent;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -86,5 +87,21 @@ public class QueryExecutorTest {
             assertThat(mapExpected.containsKey(key)).isTrue();
             assertThat(mapExpected.get(key)).isEqualTo(map.get(key));
         }
+    }
+
+    @Test
+    public void testMergeMaps() {
+        // Given -
+        final String path = "src/resources/";
+        final String filename = "rare_diseases_short_ver";
+        final String extension = ".xml";
+        Map<String, String> titles = this.queryExecutor.getTitles(path, filename, extension);
+        Map<String, String> abstracts = this.queryExecutor.getAbstracts(path, filename, extension);
+
+        // When -
+        Map<String, FileContent> mergeMap = this.queryExecutor.mergeMap(titles, abstracts);
+
+        // Then -
+        System.out.println(mergeMap);
     }
 }
