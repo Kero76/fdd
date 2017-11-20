@@ -7,6 +7,7 @@ import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
 import javax.xml.xquery.XQPreparedExpression;
 import javax.xml.xquery.XQSequence;
+import java.io.*;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -77,6 +78,42 @@ public class QueryExecutor {
     //        expr.close();
     //        con.close();
     //    }
+
+    /**
+     * Create files.
+     *
+     * @param map
+     *  Map who contain information at insert on file.
+     * @param path
+     *  Path to locate generated files.
+     * @param extension
+     *  Extension of the generated files.
+     */
+    public void createFiles(Map<String, FileContent> map, String path, String extension) throws IOException {
+        Writer writer = null;
+        for (String key : map.keySet()) {
+            try {
+                writer = new BufferedWriter(
+                    new OutputStreamWriter(
+                        new FileOutputStream(
+                            path + map.get(key).getPmid() + extension
+                        )
+                    )
+                );
+                logger.info("Writer write content on file");
+                writer.write("T. "
+                        + map.get(key).getTitle()
+                        + System.getProperty("line.separator")
+                        + "A. "
+                        + map.get(key).getContent()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                writer.close();
+            }
+        }
+    }
 
     /**
      * Merge Two map.

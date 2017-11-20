@@ -104,4 +104,24 @@ public class QueryExecutorTest {
         // Then -
         System.out.println(mergeMap);
     }
+
+    @Test
+    public void testCreateFiles() {
+        // Given -
+        final String path = "src/resources/";
+        final String filename = "rare_diseases_short_ver";
+        final String extension = ".xml";
+        final String destinationPath = "src/resources/files/";
+        final String destinationExtension = ".txt";
+        Map<String, String> titles = this.queryExecutor.getTitles(path, filename, extension);
+        Map<String, String> abstracts = this.queryExecutor.getAbstracts(path, filename, extension);
+        Map<String, FileContent> mergeMap = this.queryExecutor.mergeMap(titles, abstracts);
+
+        // When -
+        try {
+            this.queryExecutor.createFiles(mergeMap, destinationPath, destinationExtension);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
