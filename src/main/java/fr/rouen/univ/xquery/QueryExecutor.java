@@ -13,6 +13,8 @@ public class QueryExecutor {
 
     private static Logger logger = Logger.getLogger("QueryExecutor");
 
+    private static String REGEX_SEPARATOR = "--";
+
     private XQConnection connection;
 
     public QueryExecutor() {
@@ -88,7 +90,7 @@ public class QueryExecutor {
         // Build request.
         String fieldsSelected = "PubmedArticleSet/PubmedArticle";
         String loop = "for $article in $fdd";
-        String returnFields = "($article//MedlineCitation/PMID/text(), ',', $article//ArticleTitle/text(), ' ')";
+        String returnFields = "($article//MedlineCitation/PMID/text(), ',', $article//ArticleTitle/text(), '" + REGEX_SEPARATOR + "')\n";
         String query = this.buildQuery(path, filename, extension, fieldsSelected, loop, returnFields);
 
         // Map with all titles.
@@ -124,9 +126,9 @@ public class QueryExecutor {
         String fieldsSelected = "PubmedArticleSet/PubmedArticle";
         String loop = "for $article in $fdd";
         String returnFields = "if (fn:empty($article//Abstract/AbstractText/text())) then (\n"
-                + "($article//MedlineCitation/PMID/text(), ',', 'No Data.')\n"
+                + "($article//MedlineCitation/PMID/text(), ',', 'No Data.', '" + REGEX_SEPARATOR + "')\n"
                 + ") else (\n"
-                + "($article//MedlineCitation/PMID/text(), ',', $article//Abstract/AbstractText/text())\n"
+                + "($article//MedlineCitation/PMID/text(), ',', $article//Abstract/AbstractText/text(), '" + REGEX_SEPARATOR + "')\n"
                 + ")";
         String query = this.buildQuery(path, filename, extension, fieldsSelected, loop, returnFields);
 
@@ -140,7 +142,7 @@ public class QueryExecutor {
 
             // Create Map to split PMID as key and abstract as value.
             for (String s : l) {
-                if (s.split(",").length == 2 && !s.split(",")[1].equals(" No Data")) {
+                if (s.split(",").length == 2 && !s.split(",")[1].contains(" No Data.")) {
                     abstracts.put(s.split(",")[0], s.split(",")[1]);
                 }
             }
@@ -192,7 +194,7 @@ public class QueryExecutor {
             throws XQException {
         List<String> l = new ArrayList<>();
         String queryResult = sequence.getSequenceAsString(null);
-        l.addAll(Arrays.asList(queryResult.split("[.] ?")));
+        l.addAll(Arrays.asList(queryResult.split(REGEX_SEPARATOR)));
 
         return l;
     }

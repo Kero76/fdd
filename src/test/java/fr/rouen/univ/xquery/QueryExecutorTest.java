@@ -52,9 +52,9 @@ public class QueryExecutorTest {
         Map<String, String> map;
 
         Map<String, String> mapExpected = new HashMap<>();
-        mapExpected.put("29061857", "A case of blood sweating: hematohidrosis syndrome");
-        mapExpected.put("29054232", "Surgical Repair of Bland-White-Garland Syndrome With Giant Right Coronary Artery Aneurysm");
-        mapExpected.put("29054237", "Systemic Venous Rerouting Through the Coronary Sinus for ccTGA With Bilateral SVCs");
+        mapExpected.put("29061857", "A case of blood sweating: hematohidrosis syndrome.");
+        mapExpected.put("29054232", "Surgical Repair of Bland-White-Garland Syndrome With Giant Right Coronary Artery Aneurysm.");
+        mapExpected.put("29054237", "Systemic Venous Rerouting Through the Coronary Sinus for ccTGA With Bilateral SVCs.");
 
         // When - Execute getTitles
         map = this.queryExecutor.getTitles(path, filename, extension);
@@ -75,7 +75,7 @@ public class QueryExecutorTest {
         Map<String, String> map;
 
         Map<String, String> mapExpected = new HashMap<>();
-        mapExpected.put("29054232", "A 61-year-old man was diagnosed with adult-type anomalous left coronary artery from pulmonary artery (or Bland-White-Garland syndrome) and a giant right coronary artery aneurysm");
+        mapExpected.put("29054232", "A 61-year-old man was diagnosed with adult-type anomalous left coronary artery from pulmonary artery (or Bland-White-Garland syndrome) and a giant right coronary artery aneurysm. He underwent a thorough anatomic correction to excise the aneurysm and reconstruct a coronary system of two vessels. The postoperative period of this patient was uneventful.");
 
         // When - Execute getTitles
         map = this.queryExecutor.getAbstracts(path, filename, extension);
