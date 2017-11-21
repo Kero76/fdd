@@ -1,6 +1,7 @@
 package fr.rouen.univ.xquery;
 
 import fr.rouen.univ.models.FileContent;
+import fr.rouen.univ.models.FileContentMesh;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -90,6 +91,28 @@ public class QueryExecutorTest {
     }
 
     @Test
+    public void testGetMeshes() {
+        // Given -
+        final String path = "src/resources/";
+        final String filename = "rare_diseases_short_ver";
+        final String extension = ".xml";
+        Map<String, String> map;
+
+        Map<String, String> mapExpected = new HashMap<>();
+        mapExpected.put("29054232", "A 61-year-old man was diagnosed with adult-type anomalous left coronary artery from pulmonary artery (or Bland-White-Garland syndrome) and a giant right coronary artery aneurysm. He underwent a thorough anatomic correction to excise the aneurysm and reconstruct a coronary system of two vessels. The postoperative period of this patient was uneventful.");
+
+        // When - Execute getTitles
+        map = this.queryExecutor.getMeshes(path, filename, extension);
+        System.out.println("Map : " + map);
+
+        // Then - Compare with Map expected.
+        for (String key : map.keySet()) {
+            assertThat(mapExpected.containsKey(key)).isTrue();
+            assertThat(mapExpected.get(key)).isEqualTo(map.get(key));
+        }
+    }
+
+    @Test
     public void testMergeMaps() {
         // Given -
         final String path = "src/resources/";
@@ -120,6 +143,27 @@ public class QueryExecutorTest {
         // When -
         try {
             this.queryExecutor.createFiles(mergeMap, destinationPath, destinationExtension);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testCreateIndexedFiles() {
+        // Given -
+        final String path = "src/resources/";
+        final String filename = "rare_diseases_short_ver";
+        final String extension = ".xml";
+        final String destinationPath = "src/resources/files/";
+        final String destinationExtension = ".txt";
+        Map<String, String> titles = this.queryExecutor.getTitles(path, filename, extension);
+        Map<String, String> abstracts = this.queryExecutor.getAbstracts(path, filename, extension);
+        Map<String, String> meshes = this.queryExecutor.getMeshes(path, filename, extension);
+        Map<String, FileContentMesh> mergeMap = this.queryExecutor.mergeIndexedMap(titles, abstracts, meshes);
+
+        // When -
+        try {
+            this.queryExecutor.createIndexesFiles(mergeMap, destinationPath, destinationExtension);
         } catch (IOException e) {
             e.printStackTrace();
         }

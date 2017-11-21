@@ -2,6 +2,7 @@ package fr.rouen.univ.xquery;
 
 import com.saxonica.xqj.SaxonXQDataSource;
 import fr.rouen.univ.models.FileContent;
+import fr.rouen.univ.models.FileContentMesh;
 
 import javax.xml.xquery.XQConnection;
 import javax.xml.xquery.XQException;
@@ -10,6 +11,8 @@ import javax.xml.xquery.XQSequence;
 import java.io.*;
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class QueryExecutor {
 
@@ -27,57 +30,6 @@ public class QueryExecutor {
             e.printStackTrace();
         }
     }
-
-
-    //    /**
-    //     * Parse a .xml file and write on a file the result of the request.
-    //     * @param path
-    //     *  Path to .xml file at parse.
-    //     * @param filename
-    //     *  Name of the xml file at parse.
-    //     * @param extension
-    //     *  Extension of the file at parse.
-    //     * @throws XQException
-    //     * @throws IOException
-    //     */
-    //    public void queryInFile(String path, String filename, String extension) throws XQException, IOException {
-    //        StringBuilder stringBuilder = new StringBuilder();
-    //        stringBuilder.append(path);
-    //        stringBuilder.append(filename);
-    //        stringBuilder.append(extension);
-    //
-    //        logger.info("Prepare and execute query");
-    //        SaxonXQDataSource ds = new SaxonXQDataSource();
-    //        XQConnection con = ds.getConnection();
-    //        String query = "let $fdd := doc(\"" + stringBuilder.toString() + "\")/PubmedArticleSet/PubmedArticle\n" +
-    //                "for $article in $fdd\n" +
-    //                "return ('\nT. ',$article//ArticleTitle/text())";
-    //        XQPreparedExpression expr = con.prepareExpression(query);
-    //        XQSequence result = expr.executeQuery();
-    //
-    ////        logger.info("Try to write result of query on file");
-    ////        Writer writer = null;
-    ////        try {
-    ////            writer = new BufferedWriter(
-    ////                new OutputStreamWriter(
-    ////                    new FileOutputStream(
-    ////                        "src/resources/files/" + filename + ".txt"
-    ////                    )
-    ////                )
-    ////            );
-    ////            logger.info("Writer write content on file");
-    ////            writer.write(result.getSequenceAsString(null));
-    ////        } catch (Exception e) {
-    ////            logger.info("Error while writing in file" + filename + " : " + e.getMessage());
-    ////        } finally {
-    ////            logger.info("The object Writer is close.");
-    ////            writer.close();
-    ////        }
-    //
-    //        result.close();
-    //        expr.close();
-    //        con.close();
-    //    }
 
     /**
      * Create files.
@@ -116,6 +68,46 @@ public class QueryExecutor {
     }
 
     /**
+     * Create indexed files.
+     *
+     * @param map
+     *  Map who contain information at insert on file.
+     * @param path
+     *  Path to locate generated files.
+     * @param extension
+     *  Extension of the generated files.
+     * @throws IOException
+     */
+    public void createIndexesFiles(Map<String, FileContentMesh> map, String path, String extension) throws IOException {
+        Writer writer = null;
+        for (String key : map.keySet()) {
+            try {
+                writer = new BufferedWriter(
+                    new OutputStreamWriter(
+                        new FileOutputStream(
+                    path + map.get(key).getPmid() + "_indexed" + extension
+                        )
+                    )
+                );
+                logger.info("Writer write content on indexed file");
+                writer.write("T. "
+                             + map.get(key).getTitle()
+                             + System.getProperty("line.separator")
+                             + "A. "
+                             + map.get(key).getContent()
+                             + System.getProperty("line.separator")
+                             + "I. "
+                             + map.get(key).getMeshes()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                writer.close();
+            }
+        }
+    }
+
+    /**
      * Merge Two map.
      *
      * @param titles
@@ -129,6 +121,27 @@ public class QueryExecutor {
         Map<String, FileContent> map = new HashMap<>();
         for (String s : abstracts.keySet()) {
             map.put(s, new FileContent(s, titles.get(s), abstracts.get(s)));
+        }
+
+        return map;
+    }
+
+    /**
+     * Merge three indexed map.
+     *
+     * @param titles
+     *  Map who contains all titles.
+     * @param abstracts
+     *  Map who contains all abstracts.
+     * @param meshes
+     *  Map who contains all meshes.
+     * @return
+     *  A map who contain the merge of two maps.
+     */
+    public Map<String, FileContentMesh> mergeIndexedMap(Map<String, String> titles, Map<String, String> abstracts, Map<String, String> meshes) {
+        Map<String, FileContentMesh> map = new HashMap<>();
+        for (String s : abstracts.keySet()) {
+            map.put(s, new FileContentMesh(s, titles.get(s), abstracts.get(s), meshes.get(s)));
         }
 
         return map;
@@ -211,6 +224,44 @@ public class QueryExecutor {
     }
 
     /**
+     * Get all Meshes present on file.
+     *
+     * @param path Path of the file at load.
+     * @param filename Filename who contain information at split.
+     * @param extension File extension.
+     *
+     * @return A map who contains the pmid and meshs.
+     */
+    public Map<String, String> getMeshes(String path, String filename, String extension) {
+        // Build request.
+        String fieldsSelected = "PubmedArticleSet/PubmedArticle";
+        String loop = "for $article in $fdd";
+        String returnFields = "($article//MedlineCitation/PMID/text(), '|', $article//MeshHeadingList/MeshHeading/DescriptorName/text(), '" + REGEX_SEPARATOR + "')\n";
+        String query = this.buildQuery(path, filename, extension, fieldsSelected, loop, returnFields);
+
+        // Map with all abstracts.
+        Map<String, String> meshes = new HashMap<>();
+        try {
+            // Execute query.
+            XQPreparedExpression expr = this.connection.prepareExpression(query);
+            XQSequence result = expr.executeQuery();
+            List<String> l = (this.parseString(result));
+
+            // Create Map to split PMID as key and abstract as value.
+            for (String s : l) {
+                if (!s.split("[|]")[1].contains(" No Data.")) {
+                    String meshParse = this.meshParse(s.split("[|]")[1]);
+                    meshes.put(s.split("[|]")[0], meshParse);
+                }
+            }
+        } catch (XQException e) {
+            e.printStackTrace();
+        }
+
+        return meshes;
+    }
+
+    /**
      * Build query.
      *
      * @param path Path of file at request.
@@ -253,5 +304,31 @@ public class QueryExecutor {
         l.addAll(Arrays.asList(queryResult.split(REGEX_SEPARATOR)));
 
         return l;
+    }
+
+    /**
+     * Parse mesh string.
+     *
+     * @param meshes
+     *  Mesh at parse.
+     * @return
+     *  A string who contain mesh separate with '|' separator.
+     */
+    private String meshParse(String meshes) {
+        String separator = "|";
+        meshes = meshes.replace(" ", "");
+        StringBuilder out = new StringBuilder(meshes.replace(",", ""));
+
+        Pattern p = Pattern.compile("[A-Z]");
+        Matcher m = p.matcher(meshes);
+        int extraFeed = -1;
+        while (m.find()) {
+            if (m.start() != 0) {
+                out = out.insert(m.start() + extraFeed, separator);
+                extraFeed++;
+            }
+        }
+
+        return out.toString();
     }
 }
