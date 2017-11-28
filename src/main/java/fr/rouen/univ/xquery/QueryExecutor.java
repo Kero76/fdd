@@ -236,7 +236,13 @@ public class QueryExecutor {
         // Build request.
         String fieldsSelected = "PubmedArticleSet/PubmedArticle";
         String loop = "for $article in $fdd";
-        String returnFields = "($article//MedlineCitation/PMID/text(), '|', $article//MeshHeadingList/MeshHeading/DescriptorName/text(), '" + REGEX_SEPARATOR + "')\n";
+        String returnFields =
+                "let $pmid := $article//MedlineCitation/PMID"
+                        + System.getProperty("line.separator")
+                        + "let $meshes := $article//MeshHeadingList/MeshHeading"
+                        + System.getProperty("line.separator")
+                        + "return <article>{$pmid}{$meshes}</article>";
+//        String returnFields = g"($article//MedlineCitation/PMID/text(), '|', $article//MeshHeadingList/MeshHeading/DescriptorName/text(), '" + REGEX_SEPARATOR + "')\n";
         String query = this.buildQuery(path, filename, extension, fieldsSelected, loop, returnFields);
 
         // Map with all abstracts.
@@ -246,6 +252,8 @@ public class QueryExecutor {
             XQPreparedExpression expr = this.connection.prepareExpression(query);
             XQSequence result = expr.executeQuery();
             List<String> l = (this.parseString(result));
+
+            System.out.println("Meshes get from request : " + l.toString());
 
             // Create Map to split PMID as key and abstract as value.
             for (String s : l) {
@@ -317,6 +325,7 @@ public class QueryExecutor {
     private String meshParse(String meshes) {
         String separator = "|";
         meshes = meshes.replace(" ", "");
+
         StringBuilder out = new StringBuilder(meshes.replace(",", ""));
 
         Pattern p = Pattern.compile("[A-Z]");
