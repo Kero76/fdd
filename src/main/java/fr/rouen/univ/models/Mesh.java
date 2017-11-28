@@ -3,38 +3,44 @@ package fr.rouen.univ.models;
 import java.util.List;
 
 public class Mesh {
-    private String ui;
 
-    private String descriptorName;
+    /**
+     * Mesh description.
+     */
+    String description;
 
-    private List<String> qualifiersName;
+    /**
+     * List of all qualifier for the description.
+     * It must be empty.
+     */
+    List<String> qualifiers;
 
-    public Mesh(String ui, List<String> qualifiersName) {
-        this.ui = ui;
-        this.qualifiersName = qualifiersName;
+    /**
+     * Mesh constructor.
+     *
+     * @param description
+     *  Descrption of the mesh.
+     * @param qualifiers
+     *  Qualifiers of the mesh.
+     */
+    public Mesh(String description, List<String> qualifiers) {
+        this.description = description;
+        this.qualifiers = qualifiers;
     }
 
-    public String getUi() {
-        return ui;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUi(String ui) {
-        this.ui = ui;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getDescriptorName() {
-        return descriptorName;
+    public List<String> getQualifiers() {
+        return qualifiers;
     }
 
-    public void setDescriptorName(String descriptorName) {
-        this.descriptorName = descriptorName;
-    }
-
-    public List<String> getQualifiersName() {
-        return qualifiersName;
-    }
-
-    public void setQualifiersName(List<String> qualifiersName) {
-        this.qualifiersName = qualifiersName;
+    public void setQualifiers(List<String> qualifiers) {
+        this.qualifiers = qualifiers;
     }
 }
