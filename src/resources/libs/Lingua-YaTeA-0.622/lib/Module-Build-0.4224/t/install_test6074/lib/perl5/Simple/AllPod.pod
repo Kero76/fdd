@@ -1,0 +1,9 @@
+=head1 NAME
+
+Simple::AllPod - Pure POD
+
+=head1 AUTHOR
+
+Simple Man <simple@example.com>
+
+=cut

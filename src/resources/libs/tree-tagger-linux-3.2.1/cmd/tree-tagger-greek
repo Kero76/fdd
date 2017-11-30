@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Set these paths appropriately
+
+BIN=/home/teegreg/Téléchargements/tree-tagger-linux-3.2.1/bin
+CMD=/home/teegreg/Téléchargements/tree-tagger-linux-3.2.1/cmd
+LIB=/home/teegreg/Téléchargements/tree-tagger-linux-3.2.1/lib
+
+OPTIONS="-token -lemma -sgml"
+
+TOKENIZER=${CMD}/utf8-tokenize.perl
+MWL=${CMD}/greek-mwls.pl
+TAGGER=${BIN}/tree-tagger
+ABBR_LIST=${LIB}/greek-abbreviations-utf8
+PARFILE=${LIB}/greek-utf8.par
+
+$TOKENIZER -a $ABBR_LIST $* |
+$MWL |
+# tagging
+$TAGGER $OPTIONS $PARFILE
+

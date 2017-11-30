@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Set these paths appropriately
+
+BIN=/home/teegreg/Téléchargements/tree-tagger-linux-3.2.1/bin
+CMD=/home/teegreg/Téléchargements/tree-tagger-linux-3.2.1/cmd
+LIB=/home/teegreg/Téléchargements/tree-tagger-linux-3.2.1/lib
+
+OPTIONS="-token -lemma -sgml"
+
+TAGGER=${BIN}/tree-tagger
+TOKENIZER=${CMD}/utf8-tokenize.perl
+PARFILE=${LIB}/slovak-utf8.par
+
+$TOKENIZER $* |
+$TAGGER $OPTIONS $PARFILE

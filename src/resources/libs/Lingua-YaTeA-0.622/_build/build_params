@@ -1,0 +1,272 @@
+do{ my $x = [
+       {
+         'ARGV' => []
+       },
+       {},
+       {
+         'PL_files' => undef,
+         '_added_to_INC' => [
+                              '/home/teegreg/Téléchargements/fdd-tp1 (2)/src/resources/libs/Lingua-YaTeA-0.622/_build/lib',
+                              '/home/teegreg/perl5/lib/perl5/5.18.2/x86_64-linux-gnu-thread-multi',
+                              '/home/teegreg/perl5/lib/perl5/5.18.2',
+                              '/home/teegreg/perl5/lib/perl5/x86_64-linux-gnu-thread-multi',
+                              '/home/teegreg/perl5/lib/perl5',
+                              '/home/teegreg/perl5/lib/perl5/5.18.1'
+                            ],
+         'allow_mb_mismatch' => 0,
+         'allow_pureperl' => 0,
+         'auto_configure_requires' => 1,
+         'autosplit' => undef,
+         'base_dir' => '/home/teegreg/Téléchargements/fdd-tp1 (2)/src/resources/libs/Lingua-YaTeA-0.622',
+         'bindoc_dirs' => [
+                            'blib/script'
+                          ],
+         'blib' => 'blib',
+         'build_bat' => 0,
+         'build_class' => 'Module::Build::Custom',
+         'build_elements' => [
+                               'PL',
+                               'support',
+                               'pm',
+                               'xs',
+                               'share_dir',
+                               'pod',
+                               'script',
+                               'conf',
+                               'share'
+                             ],
+         'build_requires' => {
+                               'Module::Build' => '0.28',
+                               'Test::More' => '0.62'
+                             },
+         'build_script' => 'Build',
+         'bundle_inc' => [],
+         'bundle_inc_preload' => [],
+         'c_source' => undef,
+         'conf_files' => {
+                           'etc/yatea/yatea.rc' => 'conf/yatea/yatea.rc'
+                         },
+         'config' => undef,
+         'config_dir' => '_build',
+         'configure_requires' => {
+                                   'File::chmod' => 0,
+                                   'Module::Build' => '0.38'
+                                 },
+         'conflicts' => {},
+         'cover' => undef,
+         'cpan_client' => 'cpan',
+         'create_license' => undef,
+         'create_makefile_pl' => undef,
+         'create_packlist' => 1,
+         'create_readme' => undef,
+         'debug' => undef,
+         'debugger' => undef,
+         'destdir' => undef,
+         'dist_abstract' => undef,
+         'dist_author' => undef,
+         'dist_name' => 'Lingua-YaTeA',
+         'dist_suffix' => undef,
+         'dist_version' => '0.622',
+         'dist_version_from' => 'lib/Lingua/YaTeA.pm',
+         'dynamic_config' => 1,
+         'extra_compiler_flags' => [],
+         'extra_linker_flags' => [],
+         'extra_manify_args' => undef,
+         'get_options' => {},
+         'has_config_data' => undef,
+         'html_css' => '',
+         'include_dirs' => [],
+         'install_base' => '/home/teegreg/perl5',
+         'install_base_relpaths' => {
+                                      'conf' => [
+                                                  'etc'
+                                                ],
+                                      'share' => [
+                                                   'share'
+                                                 ]
+                                    },
+         'install_path' => {
+                             'conf' => '/etc',
+                             'share' => '/usr/share'
+                           },
+         'install_sets' => {},
+         'installdirs' => 'site',
+         'libdoc_dirs' => [
+                            'blib/lib',
+                            'blib/arch'
+                          ],
+         'license' => 'perl',
+         'magic_number' => undef,
+         'mb_version' => '0.4224',
+         'meta_add' => {},
+         'meta_merge' => {},
+         'metafile' => 'META.yml',
+         'metafile2' => 'META.json',
+         'module_name' => 'Lingua::YaTeA',
+         'mymetafile' => 'MYMETA.yml',
+         'mymetafile2' => 'MYMETA.json',
+         'needs_compiler' => '',
+         'orig_dir' => '/home/teegreg/Téléchargements/fdd-tp1 (2)/src/resources/libs/Lingua-YaTeA-0.622',
+         'original_prefix' => {},
+         'perl' => '/usr/bin/perl',
+         'pm_files' => undef,
+         'pod_files' => undef,
+         'pollute' => undef,
+         'prefix' => undef,
+         'prefix_relpaths' => {
+                                'core' => {
+                                            'conf' => [
+                                                        'etc'
+                                                      ],
+                                            'share' => [
+                                                         'share'
+                                                       ]
+                                          },
+                                'site' => {
+                                            'conf' => [
+                                                        'etc'
+                                                      ],
+                                            'share' => [
+                                                         'share'
+                                                       ]
+                                          },
+                                'vendor' => {
+                                              'conf' => [
+                                                          'etc'
+                                                        ],
+                                              'share' => [
+                                                           'share'
+                                                         ]
+                                            }
+                              },
+         'prereq_action_types' => [
+                                    'requires',
+                                    'build_requires',
+                                    'test_requires',
+                                    'conflicts',
+                                    'recommends'
+                                  ],
+         'program_name' => undef,
+         'pureperl_only' => 0,
+         'quiet' => undef,
+         'recommends' => {},
+         'recurse_into' => [],
+         'recursive_test_files' => undef,
+         'release_status' => 'stable',
+         'requires' => {
+                         'Config::General' => '2.3',
+                         'Data::Dumper' => 0,
+                         'Encode' => 0,
+                         'File::Compare' => 0,
+                         'File::Path' => 0,
+                         'Getopt::Long' => 0,
+                         'Module::Build::Compat' => 0,
+                         'NEXT' => 0,
+                         'POSIX' => 0,
+                         'Parse::Yapp' => 0,
+                         'Pod::Usage' => 0,
+                         'Scalar::Util' => 0,
+                         'Test::More' => '0.62',
+                         'Test::Pod' => 0,
+                         'Test::Pod::Coverage' => 0,
+                         'perl' => '5.005'
+                       },
+         'script_files' => undef,
+         'scripts' => undef,
+         'share_dir' => undef,
+         'share_files' => {
+                            'share/YaTeA/config/EN/ChunkingExceptions' => 'share/YaTeA/config/EN/ChunkingExceptions',
+                            'share/YaTeA/config/EN/ChunkingFrontiers' => 'share/YaTeA/config/EN/ChunkingFrontiers',
+                            'share/YaTeA/config/EN/CleaningExceptions' => 'share/YaTeA/config/EN/CleaningExceptions',
+                            'share/YaTeA/config/EN/CleaningFrontiers' => 'share/YaTeA/config/EN/CleaningFrontiers',
+                            'share/YaTeA/config/EN/ForbiddenStructures' => 'share/YaTeA/config/EN/ForbiddenStructures',
+                            'share/YaTeA/config/EN/LGPmapping' => 'share/YaTeA/config/EN/LGPmapping',
+                            'share/YaTeA/config/EN/LinguisticConfiguration' => 'share/YaTeA/config/EN/LinguisticConfiguration',
+                            'share/YaTeA/config/EN/Options' => 'share/YaTeA/config/EN/Options',
+                            'share/YaTeA/config/EN/ParsingPatterns' => 'share/YaTeA/config/EN/ParsingPatterns',
+                            'share/YaTeA/config/EN/TagSet' => 'share/YaTeA/config/EN/TagSet',
+                            'share/YaTeA/config/FR-Flemm/ChunkingExceptions' => 'share/YaTeA/config/FR-Flemm/ChunkingExceptions',
+                            'share/YaTeA/config/FR-Flemm/ChunkingFrontiers' => 'share/YaTeA/config/FR-Flemm/ChunkingFrontiers',
+                            'share/YaTeA/config/FR-Flemm/CleaningExceptions' => 'share/YaTeA/config/FR-Flemm/CleaningExceptions',
+                            'share/YaTeA/config/FR-Flemm/CleaningFrontiers' => 'share/YaTeA/config/FR-Flemm/CleaningFrontiers',
+                            'share/YaTeA/config/FR-Flemm/ForbiddenStructures' => 'share/YaTeA/config/FR-Flemm/ForbiddenStructures',
+                            'share/YaTeA/config/FR-Flemm/Options' => 'share/YaTeA/config/FR-Flemm/Options',
+                            'share/YaTeA/config/FR-Flemm/ParsingPatterns' => 'share/YaTeA/config/FR-Flemm/ParsingPatterns',
+                            'share/YaTeA/config/FR-Flemm/TagSet' => 'share/YaTeA/config/FR-Flemm/TagSet',
+                            'share/YaTeA/config/FR/ChunkingExceptions' => 'share/YaTeA/config/FR/ChunkingExceptions',
+                            'share/YaTeA/config/FR/ChunkingFrontiers' => 'share/YaTeA/config/FR/ChunkingFrontiers',
+                            'share/YaTeA/config/FR/CleaningExceptions' => 'share/YaTeA/config/FR/CleaningExceptions',
+                            'share/YaTeA/config/FR/CleaningFrontiers' => 'share/YaTeA/config/FR/CleaningFrontiers',
+                            'share/YaTeA/config/FR/CoordPatterns' => 'share/YaTeA/config/FR/CoordPatterns',
+                            'share/YaTeA/config/FR/ForbiddenStructures' => 'share/YaTeA/config/FR/ForbiddenStructures',
+                            'share/YaTeA/config/FR/LinguisticConfiguration' => 'share/YaTeA/config/FR/LinguisticConfiguration',
+                            'share/YaTeA/config/FR/Options' => 'share/YaTeA/config/FR/Options',
+                            'share/YaTeA/config/FR/ParsingPatterns' => 'share/YaTeA/config/FR/ParsingPatterns',
+                            'share/YaTeA/config/FR/TagSet' => 'share/YaTeA/config/FR/TagSet',
+                            'share/YaTeA/config/FR/mapping.TT2Lexter' => 'share/YaTeA/config/FR/mapping.TT2Lexter',
+                            'share/YaTeA/locale/EN/Messages' => 'share/YaTeA/locale/EN/Messages',
+                            'share/YaTeA/locale/FR/Messages' => 'share/YaTeA/locale/FR/Messages',
+                            'share/YaTeA/samples/bootstrap.testified' => 'share/YaTeA/samples/bootstrap.testified',
+                            'share/YaTeA/samples/corpus.ttg' => 'share/YaTeA/samples/corpus.ttg',
+                            'share/YaTeA/samples/environment_EN.TT' => 'share/YaTeA/samples/environment_EN.TT',
+                            'share/YaTeA/samples/pmid10788508-v2.1l' => 'share/YaTeA/samples/pmid10788508-v2.1l',
+                            'share/YaTeA/samples/pmid10788508-v2.TT' => 'share/YaTeA/samples/pmid10788508-v2.TT',
+                            'share/YaTeA/samples/sampleEN.ttg' => 'share/YaTeA/samples/sampleEN.ttg',
+                            'share/YaTeA/samples/termes_environnement.ttg' => 'share/YaTeA/samples/termes_environnement.ttg',
+                            'share/YaTeA/samples/termes_environnement.txt' => 'share/YaTeA/samples/termes_environnement.txt',
+                            'share/YaTeA/samples/termlist' => 'share/YaTeA/samples/termlist',
+                            'share/YaTeA/samples/termlist.TT' => 'share/YaTeA/samples/termlist.TT',
+                            'share/YaTeA/samples/termsEnvironment.ttg' => 'share/YaTeA/samples/termsEnvironment.ttg',
+                            'share/YaTeA/samples/termsEnvironment.txt' => 'share/YaTeA/samples/termsEnvironment.txt',
+                            'share/YaTeA/samples/termsPhB.termsgt' => 'share/YaTeA/samples/termsPhB.termsgt',
+                            'share/YaTeA/samples/transcript-epure-Genia.bootstrap' => 'share/YaTeA/samples/transcript-epure-Genia.bootstrap',
+                            'share/YaTeA/yatea.conf' => 'share/YaTeA/yatea.conf',
+                            'share/doc/YaTeA/AnalyseProgressive.fig' => 'share/doc/YaTeA/AnalyseProgressive.fig',
+                            'share/doc/YaTeA/ArchitectureDescrYatea.tex' => 'share/doc/YaTeA/ArchitectureDescrYatea.tex',
+                            'share/doc/YaTeA/ChercheIlots.fig' => 'share/doc/YaTeA/ChercheIlots.fig',
+                            'share/doc/YaTeA/DTD/yatea.dtd' => 'share/doc/YaTeA/DTD/yatea.dtd',
+                            'share/doc/YaTeA/DataDescrYatea.tex' => 'share/doc/YaTeA/DataDescrYatea.tex',
+                            'share/doc/YaTeA/FuntionDescrYatea.tex' => 'share/doc/YaTeA/FuntionDescrYatea.tex',
+                            'share/doc/YaTeA/Makefile.in' => 'share/doc/YaTeA/Makefile.in',
+                            'share/doc/YaTeA/PlaceInsert.fig' => 'share/doc/YaTeA/PlaceInsert.fig',
+                            'share/doc/YaTeA/SatureEtMAJ.fig' => 'share/doc/YaTeA/SatureEtMAJ.fig',
+                            'share/doc/YaTeA/TAtt.fig' => 'share/doc/YaTeA/TAtt.fig',
+                            'share/doc/YaTeA/TechnicalDocYatea.bbl' => 'share/doc/YaTeA/TechnicalDocYatea.bbl',
+                            'share/doc/YaTeA/TechnicalDocYatea.tex' => 'share/doc/YaTeA/TechnicalDocYatea.tex',
+                            'share/doc/YaTeA/UserManualForTechDoc.tex' => 'share/doc/YaTeA/UserManualForTechDoc.tex',
+                            'share/doc/YaTeA/Yatea_Classes_Config.fig' => 'share/doc/YaTeA/Yatea_Classes_Config.fig',
+                            'share/doc/YaTeA/Yatea_Classes_Process.fig' => 'share/doc/YaTeA/Yatea_Classes_Process.fig',
+                            'share/doc/YaTeA/Yatea_user_manual.tex' => 'share/doc/YaTeA/Yatea_user_manual.tex',
+                            'share/doc/YaTeA/affichage.fig' => 'share/doc/YaTeA/affichage.fig',
+                            'share/doc/YaTeA/alvis.sty' => 'share/doc/YaTeA/alvis.sty',
+                            'share/doc/YaTeA/analyseDefinis.fig' => 'share/doc/YaTeA/analyseDefinis.fig',
+                            'share/doc/YaTeA/analyseSSDefinis.fig' => 'share/doc/YaTeA/analyseSSDefinis.fig',
+                            'share/doc/YaTeA/chargementPatrons.fig' => 'share/doc/YaTeA/chargementPatrons.fig',
+                            'share/doc/YaTeA/chargementTAtt.fig' => 'share/doc/YaTeA/chargementTAtt.fig',
+                            'share/doc/YaTeA/ct.fig' => 'share/doc/YaTeA/ct.fig',
+                            'share/doc/YaTeA/decoupage.fig' => 'share/doc/YaTeA/decoupage.fig',
+                            'share/doc/YaTeA/endogenous.fig' => 'share/doc/YaTeA/endogenous.fig',
+                            'share/doc/YaTeA/entreeLex.fig' => 'share/doc/YaTeA/entreeLex.fig',
+                            'share/doc/YaTeA/exogenous.fig' => 'share/doc/YaTeA/exogenous.fig',
+                            'share/doc/YaTeA/foret.fig' => 'share/doc/YaTeA/foret.fig',
+                            'share/doc/YaTeA/generalExtracteur.fig' => 'share/doc/YaTeA/generalExtracteur.fig',
+                            'share/doc/YaTeA/gnms.fig' => 'share/doc/YaTeA/gnms.fig',
+                            'share/doc/YaTeA/ilot.fig' => 'share/doc/YaTeA/ilot.fig',
+                            'share/doc/YaTeA/pat_decomp.fig' => 'share/doc/YaTeA/pat_decomp.fig',
+                            'share/doc/YaTeA/samples/pmid10788508-v2.genia2.xml' => 'share/doc/YaTeA/samples/pmid10788508-v2.genia2.xml',
+                            'share/doc/YaTeA/transfig.tex' => 'share/doc/YaTeA/transfig.tex'
+                          },
+         'sign' => undef,
+         'tap_harness_args' => {},
+         'test_file_exts' => [
+                               '.t'
+                             ],
+         'test_files' => undef,
+         'test_requires' => {},
+         'use_rcfile' => 1,
+         'use_tap_harness' => 0,
+         'verbose' => undef,
+         'xs_files' => undef
+       }
+     ];
+$x; }
