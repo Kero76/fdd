@@ -15,8 +15,6 @@ public class QueryExecutor {
 
     private static Logger logger = Logger.getLogger("QueryExecutor");
 
-    private static String REGEX_SEPARATOR = "--";
-
     private XQConnection connection;
 
     public QueryExecutor() {
@@ -58,9 +56,11 @@ public class QueryExecutor {
         // Map with all abstracts.
         Map<String, String> meshes = new HashMap<>();
         try {
+            logger.info("Prepared query");
             // Execute query.
             XQPreparedExpression expr = this.connection.prepareExpression(query);
             XQSequence result = expr.executeQuery();
+            logger.info("Execute query");
             return Optional.of(result.getSequenceAsString(null));
         } catch (XQException e) {
             e.printStackTrace();
@@ -81,6 +81,8 @@ public class QueryExecutor {
      * @return The query entirely build.
      */
     private String buildQuery(String path, String filename, String extension, String fieldsSelected, String loop, String returnFields) {
+        logger.info("Start building query");
+
         // Build query.
         StringBuilder query = new StringBuilder();
         query.append("let $fdd := doc(\"");
@@ -91,6 +93,8 @@ public class QueryExecutor {
         query.append(fieldsSelected + "\n");
         query.append(loop + "\n");
         query.append("return " + returnFields);
+
+        logger.info("Building complete : " + query.toString());
 
         return query.toString();
     }

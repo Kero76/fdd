@@ -1,5 +1,6 @@
 package fr.rouen.univ.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mesh {
@@ -14,6 +15,11 @@ public class Mesh {
      * It must be empty.
      */
     List<String> qualifiers;
+
+    public Mesh() {
+        this.description = "";
+        this.qualifiers = new ArrayList<>();
+    }
 
     /**
      * Mesh constructor.
@@ -40,7 +46,12 @@ public class Mesh {
         return qualifiers;
     }
 
-    public void setQualifiers(List<String> qualifiers) {
-        this.qualifiers = qualifiers;
+    public void addQualifier(String qualifier) {
+        this.qualifiers.add(qualifier);
+    }
+
+    @Override
+    public String toString() {
+        return "Mesh{" + "description='" + description + '\'' + ", qualifiers=" + qualifiers + '}';
     }
 }

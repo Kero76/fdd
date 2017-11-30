@@ -37,6 +37,5 @@ public class FileCreatorTest {
         // Then -
         assertThat(this.fileCreator.getArticles().size()).isEqualTo(sizeExpected);
         System.out.println(this.fileCreator.getArticles());
-
     }
 }
