@@ -1,4 +1,4 @@
-package fr.rouen.univ.files;
+package fr.rouen.univ.models;
 
 import fr.rouen.univ.parser.XmlParser;
 import fr.rouen.univ.xquery.QueryExecutor;
@@ -10,15 +10,15 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FileCreatorTest {
+public class DataFillerTest {
 
     private QueryExecutor queryExecutor;
-    private FileCreator fileCreator;
+    private DataFiller dataFiller;
 
     @Before
     public void setUp() {
         this.queryExecutor = new QueryExecutor();
-        this.fileCreator = new FileCreator();
+        this.dataFiller = new DataFiller();
     }
 
     @Test
@@ -32,10 +32,10 @@ public class FileCreatorTest {
         int sizeExpected = 2;
 
         // When -
-        this.fileCreator.fillArticlesList(l);
+        this.dataFiller.fillArticlesList(l);
 
         // Then -
-        assertThat(this.fileCreator.getArticles().size()).isEqualTo(sizeExpected);
-        System.out.println(this.fileCreator.getArticles());
+        assertThat(this.dataFiller.getArticles().size()).isEqualTo(sizeExpected);
+        System.out.println(this.dataFiller.getArticles());
     }
 }

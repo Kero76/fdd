@@ -1,24 +1,21 @@
-package fr.rouen.univ.files;
+package fr.rouen.univ.models;
 
-import fr.rouen.univ.models.Mesh;
-import fr.rouen.univ.models.PubmedArticle;
 import fr.rouen.univ.parser.XmlParser;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class FileCreator {
+public class DataFiller {
 
     private List<PubmedArticle> articles;
 
     /**
      * Logger to check internally the process of each method.
      */
-    private static Logger logger = Logger.getLogger(FileCreator.class.getName());
+    private static Logger logger = Logger.getLogger(DataFiller.class.getName());
 
-    public FileCreator() {
+    public DataFiller() {
         this.articles = new ArrayList<>();
     }
 
