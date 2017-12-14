@@ -26,5 +26,3 @@ mkdir yatea && tar zxvf Lingua-YaTeA-0.622.tar.gz -C yatea
 rm tree-tagger-ARM64-3.2.tar.gz
 rm geniatagger-3.0.2.tar.gz
 rm Lingua-YaTeA-0.622.tar.gz
-
-# Installing Tree-Tagger
