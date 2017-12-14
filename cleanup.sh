@@ -1,4 +1,8 @@
 #!/bin/bash
 
 # Remove folder libs.
-rm -rf libs/
+if [ -d "./libs" ] 
+then
+    rm -rf libs/
+fi
+
