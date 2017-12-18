@@ -60,7 +60,7 @@ public class FileGenerator {
      * @throws IOException
      */
     public static void fileWithTitleContent(String path, String extension, List<PubmedArticle> articles) throws IOException {
-        logger.info("Create Unindexed files");
+        logger.info("Create title content files");
         Writer writer = null;
         StringBuilder stringBuilder = null;
 
@@ -91,7 +91,7 @@ public class FileGenerator {
      * @throws IOException
      */
     public static void fileWithAbstractContent(String path, String extension, List<PubmedArticle> articles) throws IOException {
-        logger.info("Create Unindexed files");
+        logger.info("Create abstract content files");
         Writer writer = null;
         StringBuilder stringBuilder = null;
 
@@ -110,7 +110,70 @@ public class FileGenerator {
         }
     }
 
+    /**
+     *
+     *
+     * @param path
+     *  Path of the file.
+     * @param extension
+     *  Extension for the file.
+     * @param articles
+     *  List of PubMed articles.
+     * @throws IOException
+     */
+    public static void fileWithMeshContent(String path, String extension, List<PubmedArticle> articles) throws IOException {
+        logger.info("Create meshes content files");
+        Writer writer = null;
+        StringBuilder stringBuilder = null;
 
+        for (PubmedArticle article : articles) {
+            try {
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("M. ");
+                writer = FileGenerator.instanciateWriter(path, article.getPmid(), extension);
+                logger.info("Writer write content on file");
+                writer.write(stringBuilder.toString());
+
+                logger.info("Format all meshes");
+                // Loop on each meshes.
+                for (Mesh m : article.getMeshes()) {
+                    stringBuilder = new StringBuilder();
+                    // If size equal 0, then write only the description content.
+                    if (m.getQualifiers().size() == 0) {
+                        stringBuilder.append(m.getDescription());
+                    }
+                    // else, generate following format : desc/qual, desc/qual, ...
+                    else {
+                        for (String qualifier : m.getQualifiers()) {
+                            stringBuilder.append(m.getDescription());
+                            stringBuilder.append("/");
+                            stringBuilder.append(qualifier);
+                            stringBuilder.append("; ");
+                        }
+                    }
+                    logger.info("Writer write meshes content on file.");
+                    stringBuilder.append(" | ");
+                    writer.write(stringBuilder.toString());
+                    logger.info("Clean stringBuilder");
+                }
+                logger.info("File " + path + article.getPmid() + extension + " created");
+            } finally {
+                writer.close();
+            }
+        }
+    }
+
+    /**
+     *
+     *
+     * @param path
+     *  Path of the file.
+     * @param extension
+     *  Extension for the file.
+     * @param articles
+     *  List of PubMed articles.
+     * @throws IOException
+     */
     public static void fileIndexed(String path, String extension, List<PubmedArticle> articles) throws IOException {
         logger.info("Create indexed files");
         Writer writer = null;
@@ -158,6 +221,7 @@ public class FileGenerator {
             }
         }
     }
+
 
     private static Writer instanciateWriter(String path, String filename, String extension) throws FileNotFoundException {
         logger.info("Create file " + path + filename + extension + ".");
