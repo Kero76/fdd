@@ -32,7 +32,7 @@ wget http://search.cpan.org/CPAN/authors/id/T/TH/THHAMON/Lingua-YaTeA-0.622.tar.
 tar zxvf Lingua-YaTeA-0.622.tar.gz
 rm Lingua-YaTeA-0.622.tar.gz
 mv Lingua-YaTeA-0.622 yatea && cd yatea
-perl Makefile.PL
-make
-make test
-make install
+su -c "perl Makefile.PL"
+su -c "make"
+su -c "make test"
+su -c "make install"
