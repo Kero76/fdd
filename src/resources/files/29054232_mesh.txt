@@ -1,0 +1,5 @@
+Anastomosis,Surgical,Bland
+Anastomosis,White,Garland,Syndrome,Cardiac
+Anastomosis,Bland,White,Garland
+Anastomosis,Surgical,Cardiac,Surgical,Procedures
+Surgical,Syndrome,Cardiac

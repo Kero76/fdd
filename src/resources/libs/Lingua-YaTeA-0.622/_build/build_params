@@ -6,7 +6,7 @@ do{ my $x = [
        {
          'PL_files' => undef,
          '_added_to_INC' => [
-                              '/home/teegreg/Téléchargements/fdd-tp1 (2)/src/resources/libs/Lingua-YaTeA-0.622/_build/lib',
+                              '/home/teegreg/Téléchargements/Lingua-YaTeA-0.622/_build/lib',
                               '/home/teegreg/perl5/lib/perl5/5.18.2/x86_64-linux-gnu-thread-multi',
                               '/home/teegreg/perl5/lib/perl5/5.18.2',
                               '/home/teegreg/perl5/lib/perl5/x86_64-linux-gnu-thread-multi',
@@ -17,7 +17,7 @@ do{ my $x = [
          'allow_pureperl' => 0,
          'auto_configure_requires' => 1,
          'autosplit' => undef,
-         'base_dir' => '/home/teegreg/Téléchargements/fdd-tp1 (2)/src/resources/libs/Lingua-YaTeA-0.622',
+         'base_dir' => '/home/teegreg/Téléchargements/Lingua-YaTeA-0.622',
          'bindoc_dirs' => [
                             'blib/script'
                           ],
@@ -106,7 +106,7 @@ do{ my $x = [
          'mymetafile' => 'MYMETA.yml',
          'mymetafile2' => 'MYMETA.json',
          'needs_compiler' => '',
-         'orig_dir' => '/home/teegreg/Téléchargements/fdd-tp1 (2)/src/resources/libs/Lingua-YaTeA-0.622',
+         'orig_dir' => '/home/teegreg/Téléchargements/Lingua-YaTeA-0.622',
          'original_prefix' => {},
          'perl' => '/usr/bin/perl',
          'pm_files' => undef,

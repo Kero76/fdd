@@ -1,0 +1,17 @@
+# Inflected form	Frequency	DDW
+coronary artery	2	0
+pulmonary artery	1	0
+giant right coronary artery aneurysm	1	0
+Right Coronary Artery Aneurysm	1	0
+coronary artery aneurysm	1	0
+Giant Right Coronary Artery Aneurysm	1	0
+period of this patient	1	0
+coronary system	1	0
+61-year-old man	1	0
+right coronary artery aneurysm	1	0
+anatomic correction	1	0
+Coronary Artery Aneurysm	1	0
+postoperative period of this patient	1	0
+Artery Aneurysm	1	0
+thorough anatomic correction	1	0
+Bland-White-Garland syndrome	1	0

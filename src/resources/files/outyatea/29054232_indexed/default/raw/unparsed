@@ -1,0 +1,130 @@
+if: Bland-White-Garland syndrome
+pos: NP NN
+lf: INFunknownSUP syndrome
+is a term candidate: 1
+parsing method: PATTERN_MATCHING
+forest:  number of trees: 1
+	T1: ( Bland-White-Garland<=M> syndrome<=H> )
+islands: 0
+
+-----------------
+
+if: coronary artery
+pos: JJ NN
+lf: coronary artery
+is a term candidate: 1
+parsing method: PATTERN_MATCHING
+forest:  number of trees: 1
+	T1: ( coronary<=M> artery<=H> )
+islands: 0
+
+-----------------
+
+if: adult-type
+pos: NN
+lf: INFunknownSUP
+is a term candidate: 0
+
+-----------------
+
+if: aneurysm
+pos: NN
+lf: aneurysm
+is a term candidate: 0
+
+-----------------
+
+if: giant right coronary artery aneurysm
+pos: JJ JJ JJ NN NN
+lf: giant right coronary artery aneurysm
+is a term candidate: 0
+islands: 0
+
+-----------------
+
+if: postoperative period of this patient
+pos: JJ NN of DT NN
+lf: postoperative period of this patient
+is a term candidate: 0
+islands: 0
+
+-----------------
+
+if: coronary system
+pos: JJ NN
+lf: coronary system
+is a term candidate: 1
+parsing method: PATTERN_MATCHING
+forest:  number of trees: 1
+	T1: ( coronary<=M> system<=H> )
+islands: 0
+
+-----------------
+
+if: T. Surgical Repair of Bland-White-Garland Syndrome
+pos: NP NP NP of NP NP
+lf: T. INFunknownSUP Repair of INFunknownSUP INFunknownSUP
+is a term candidate: 0
+islands: 0
+
+-----------------
+
+if: vessels
+pos: NNS
+lf: vessel
+is a term candidate: 0
+
+-----------------
+
+if: 61-year-old man
+pos: JJ NN
+lf: 61-year-old man
+is a term candidate: 1
+parsing method: PATTERN_MATCHING
+forest:  number of trees: 1
+	T1: ( 61-year-old<=M> man<=H> )
+islands: 0
+
+-----------------
+
+if: I. Anastomosis|Surgical|Bland|White|Garland|Syndrome|Cardiac|Surgical|Procedures|Cardiopulmonary|Bypass|Computed|Tomography|Angiography|Coronary|Aneurysm|Coronary|Angiography|Dyspnea|Follow-|Up|Studies|Humans|Male|Middle|Aged|MonitoringI|ntraoperativeR|areD|iseasesR|ecoveryofF|unctionS|everityofI|llnessI|ndexS|ternotomyT|reatmentO|utcome
+pos: NP NP
+lf: I. INFunknownSUP
+is a term candidate: 1
+parsing method: PATTERN_MATCHING
+forest:  number of trees: 1
+	T1: ( I.<=M> Anastomosis|Surgical|Bland|White|Garland|Syndrome|Cardiac|Surgical|Procedures|Cardiopulmonary|Bypass|Computed|Tomography|Angiography|Coronary|Aneurysm|Coronary|Angiography|Dyspnea|Follow-|Up|Studies|Humans|Male|Middle|Aged|MonitoringI|ntraoperativeR|areD|iseasesR|ecoveryofF|unctionS|everityofI|llnessI|ndexS|ternotomyT|reatmentO|utcome<=H> )
+islands: 0
+
+-----------------
+
+if: pulmonary artery
+pos: JJ NN
+lf: pulmonary artery
+is a term candidate: 1
+parsing method: PATTERN_MATCHING
+forest:  number of trees: 1
+	T1: ( pulmonary<=M> artery<=H> )
+islands: 0
+
+-----------------
+
+if: Giant Right Coronary Artery Aneurysm
+pos: NP NP NP NP NP
+lf: Giant Right INFunknownSUP INFunknownSUP INFunknownSUP
+is a term candidate: 0
+islands: 0
+
+-----------------
+
+if: thorough anatomic correction
+pos: JJ JJ NN
+lf: thorough anatomic correction
+is a term candidate: 1
+parsing method: PATTERN_MATCHING
+forest:  number of trees: 1
+	T1: ( thorough<=M> ( anatomic<=M> correction<=H> )<=H> )
+islands: 0
+
+-----------------
+
