@@ -1,10 +1,12 @@
 #!/bin/bash
+# Clean maven repository
+mvn clean
 
 # Remove folder libs.
-if [ -d "./libs" ]
-then
-    rm -rf libs/
-fi
+# if [ -d "./libs" ]
+# then
+#     rm -rf libs/
+# fi
 
 if [ -d "./files" ]
 then
@@ -13,5 +15,5 @@ fi
 
 if [ -d "./results" ]
 then
-  rm -rf files/
+  rm -rf results/
 fi
