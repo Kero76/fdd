@@ -81,4 +81,17 @@ public class FileGeneratorTest {
 
         // Assert
     }
+
+    @Test
+    public void iCreateMeshesFiles()
+            throws IOException {
+        // Arrange
+        final String path = "src/resources/files/meshes/";
+        final String extension = ".txt";
+
+        // Act
+        FileGenerator.fileWithMeshContent(path, extension, this.articles);
+
+        // Assert
+    }
 }
