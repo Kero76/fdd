@@ -1,2 +1,6 @@
-FDD.iml
-target
+*.iml
+target/*
+.idea/*
+hypertension.xml
+diabetes_mellitus.xml
+

@@ -1,40 +1,57 @@
 package fr.rouen.univ.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mesh {
-    private String ui;
 
-    private String descriptorName;
+    /**
+     * Mesh description.
+     */
+    String description;
 
-    private List<String> qualifiersName;
+    /**
+     * List of all qualifier for the description.
+     * It must be empty.
+     */
+    List<String> qualifiers;
 
-    public Mesh(String ui, List<String> qualifiersName) {
-        this.ui = ui;
-        this.qualifiersName = qualifiersName;
+    public Mesh() {
+        this.description = "";
+        this.qualifiers = new ArrayList<>();
     }
 
-    public String getUi() {
-        return ui;
+    /**
+     * Mesh constructor.
+     *
+     * @param description
+     *  Descrption of the mesh.
+     * @param qualifiers
+     *  Qualifiers of the mesh.
+     */
+    public Mesh(String description, List<String> qualifiers) {
+        this.description = description;
+        this.qualifiers = qualifiers;
     }
 
-    public void setUi(String ui) {
-        this.ui = ui;
+    public String getDescription() {
+        return description;
     }
 
-    public String getDescriptorName() {
-        return descriptorName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setDescriptorName(String descriptorName) {
-        this.descriptorName = descriptorName;
+    public List<String> getQualifiers() {
+        return qualifiers;
     }
 
-    public List<String> getQualifiersName() {
-        return qualifiersName;
+    public void addQualifier(String qualifier) {
+        this.qualifiers.add(qualifier);
     }
 
-    public void setQualifiersName(List<String> qualifiersName) {
-        this.qualifiersName = qualifiersName;
+    @Override
+    public String toString() {
+        return "Mesh{" + "description='" + description + '\'' + ", qualifiers=" + qualifiers + '}';
     }
 }
