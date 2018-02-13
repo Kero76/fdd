@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 public class FileGeneratorTest {
 
@@ -21,13 +22,20 @@ public class FileGeneratorTest {
         DataFiller dataFiller = new DataFiller();
 
         final String path = "src/resources/";
-        final String filename = "rare_diseases_short_ver";
+//        final String filename = "rare_diseases_short_ver";
+        final String filename = "rare_diseases";
         final String extension = ".xml";
 
         Optional<String> s = queryExecutor.getArticlesFromFile(path, filename, extension);
-        List<String> l = XmlParser.parseResultQueryAsList(s);
-        dataFiller.fillArticlesList(l);
-        articles = dataFiller.getArticles();
+        try {
+            List<String> l = XmlParser.parseResultQueryAsList(s);
+            dataFiller.fillArticlesList(l);
+            articles = dataFiller.getArticles();
+        } catch (Exception e) {
+
+        }
+
+
     }
 
     @Test

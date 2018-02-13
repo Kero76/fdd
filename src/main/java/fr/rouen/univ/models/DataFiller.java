@@ -4,6 +4,7 @@ import fr.rouen.univ.parser.XmlParser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 public class DataFiller {
@@ -48,9 +49,17 @@ public class DataFiller {
             if (s.contains("PMID")) {
                 article.setPmid(XmlParser.parseLine(s));
             } else if (s.contains("ArticleTitle")) {
-                article.setTitleText(XmlParser.parseLine(s));
+                try {
+                    article.setTitleText(XmlParser.parseLine(s));
+                } catch (Exception e) {
+                    article.setTitleText("null");
+                }
             } else if (s.contains("AbstractText")) {
-                article.setAbstractText(XmlParser.parseLine(s));
+                try {
+                    article.setAbstractText(XmlParser.parseLine(s));
+                } catch (Exception e) {
+                    article.setAbstractText("null");
+                }
             } else if(s.contains("DescriptorName") || s.contains("QualifierName")) {
                 meshHeadingContent.add(XmlParser.parseLine(s));
             }
@@ -98,7 +107,11 @@ public class DataFiller {
                 String[] qualifiersSplitted = s.split(",");
                 for (String q : qualifiersSplitted ) {
                     logger.info("Qualifier " + q + " at insert on mesh : " + mesh);
-                    mesh.addQualifier(q);
+                    try {
+                        mesh.addQualifier(q);
+                    } catch (Exception e) {
+
+                    }
                 }
             }
         }
